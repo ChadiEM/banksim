@@ -1,0 +1,13 @@
+---
+applications:
+.:
+    name: banksim
+    framework:
+      name: standalone
+      info:
+         description: Standalone Application
+         exec: node ./lib/server.js
+         mem: 128M
+    command: node ./lib/server.js
+    mem: 128M
+    instances: 1
