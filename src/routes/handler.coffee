@@ -2,14 +2,12 @@ ensureAuthenticated = require("./passport-helpers").ensureAuthenticated
 passport = require("./passport-helpers").passport
 
 exports.routes = (app) ->
-  ###=============###
-  #  Get Handling   #
-  ###=============###
+  #### Get Handling
   # Check if user is already authenticated.
   app.get "/", (req, res) ->
     res.redirect "/login"
 
-  # Login and register From getter
+  # Login and register Form getter
   app.get "/login", (req, res) ->
     res.render "login",
       user: req.user,
@@ -28,9 +26,7 @@ exports.routes = (app) ->
     req.logout()
     res.redirect "/"
 
-  ###=============###
-  #  Post Handling   #
-  ###=============###
+  #### Post Handling
   app.post "/register", (req, res) ->
     res.render "register.jade", {}
     name = req.body.name
