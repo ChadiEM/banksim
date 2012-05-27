@@ -4,10 +4,10 @@ exports.routes = (app) ->
 
   # Login handling
   app.get "/login", (req, res) ->
-    res.render "login.jade", {}
+    res.render "login", {}
 
   app.post "/login", (req, res) ->
-    res.render "login.jade", {}
+    res.render "login", {}
     username = req.body.user_name
     password = req.body.password
 

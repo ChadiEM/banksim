@@ -1,56 +1,42 @@
-!!! 5
-html(lang='en')
-head
-    meta(charset='utf-8')
-    title Login
-    meta(name='description', content='')
-    meta(name='author', content='')
-    //
-       Le styles 
-    link(href='http://twitter.github.com/bootstrap/assets/css/bootstrap.css', rel='stylesheet')
-    link(href='http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css', rel='stylesheet')
-    link(href='/css/bank.css', rel='stylesheet')
-  body
-      img(style='position: absolute; top: 0; right: 0; border: 0;', src='https://a248.e.akamai.net/camo.github.com/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67', alt='Fork me on GitHub')
-    .container
-      .alert.alert-info
-        | This is a sample login form created using:
-        a(href='http://www.nodejs.org') nodejs
-        | ,
-        a(href='http://twitter.github.com/bootstrap/')  twitter-bootstrap
-        | and
-        a(href='http://jquery.com') jquery
-    .container
-      .content
-        form#login.form-horizontal(method='post', action='/login')
-          fieldset
-            legend Login
-            .control-group
-              label.control-label(for='input01') Username
-              .controls
-                input#user_name.input-xlarge(
-                  type='text'
-                  name='user_name'
-                  rel='popover'
-                  data-content='Enter your username.'
-                  data-original-title='Full Name')
-            .control-group
-              label.control-label(for='input01') Password
-              .controls
-                input.input-xlarge(type='password')
-            .control-group
-              label.control-label(for='input01')
-              .controls
-                button#password.btn.btn-success(rel='tooltip', title='first tooltip') Login
-                | - or -
-                a.btn.btn-primary(href='/Register') Sign-up
-    //
-       Le javascript
-    //
-       Placed at the end of the document so the pages load faster 
-    script(src='http://twitter.github.com/bootstrap/assets/js/jquery.js')
-    script(src='http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js')
-    script(src='http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js')
-    script(src='http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js')
-    script(type='text/javascript', src='http://jzaefferer.github.com/jquery-validation/jquery.validate.js')
-    script(type='text/javascript', src='/javascript/validate.js')
+.container
+  .alert.alert-info
+    | This is a sample login form created using:
+    a(href='http://www.nodejs.org') nodejs
+    | ,
+    a(href='http://twitter.github.com/bootstrap/')  twitter-bootstrap
+    | and
+    a(href='http://jquery.com') jquery
+.container
+  .content
+    form#login.form-horizontal(method='post', action='/login')
+      fieldset
+        legend Login
+        .control-group
+          label.control-label(for='input01') Username
+          .controls
+            input#user_name.input-xlarge(
+              type='text'
+              name='user_name'
+              rel='popover'
+              data-content='Enter your username.'
+              data-original-title='Full Name') |
+        .control-group
+          label.control-label(for='input01') Password
+          .controls
+            input.input-xlarge(type='password') |
+        .control-group
+          label.control-label(for='input01')
+          .controls
+            button#password.btn.btn-success(rel='tooltip', title='first tooltip') Login
+            | - or -
+            a.btn.btn-primary(href='/Register') Sign-up
+//
+   Le javascript
+   Placed at the end of the document so the pages load faster 
+//
+script(src='http://twitter.github.com/bootstrap/assets/js/jquery.js')
+script(src='http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js')
+script(src='http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js')
+script(src='http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js')
+script(type='text/javascript', src='http://jzaefferer.github.com/jquery-validation/jquery.validate.js')
+script(type='text/javascript', src='/javascript/validate.js')

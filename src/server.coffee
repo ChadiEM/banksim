@@ -11,10 +11,8 @@ app.configure ->
   app.use express.methodOverride()
   app.use app.router
   app.use express.static(__dirname + "/../public")
-  app.set "view options",
-    layout: false
 
-port = process.env.PORT or 4000
+port = process.env.PORT or 5000
 app.listen port, ->
   console.log "Listening on " + port
 
