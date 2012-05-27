@@ -1,0 +1,9 @@
+{
+  "db": {
+    "username": "root",
+    "pass": "_k9jFP48Vqx21b2c",
+    "host": "staff.mongohq.com",
+    "port": "10048",
+    "name": "banksim"
+  }
+}
