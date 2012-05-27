@@ -2,7 +2,7 @@
 mongoose = require("mongoose")
 nconf = require("nconf")
 nconf.use "file",
-  file: "./config.json"
+  file: "lib/config.json"
 nconf.load()
 
 # Function that will add the config options related to the db object
@@ -31,7 +31,7 @@ if settings is undefined
 if process.env.NODE_ENV is "production"
   db_path = "mongodb://" + settings.username + ":" + settings.pass + "@" + settings.host + ":" + settings.port + "/" + settings.name
 else
-  db_path = "mongodb://localhost:27017/banksim"
+  db_path = "mognodb://localhost/banksim"
 
 mongoose.connect db_path
 console.log db_path

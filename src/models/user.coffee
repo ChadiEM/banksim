@@ -3,17 +3,11 @@ db = require("./db")
 
 Schema = mongoose.Schema
 Transaction = new Schema(
-  _id: 
-    type: Number
-    index: true
   amount: Number
   date: Date
   desc: String
 )
 Account = new Schema(
-  _id: 
-    type: Number
-    index: true
   type: String
   currency: String
   branch: String
@@ -22,10 +16,10 @@ Account = new Schema(
   transactions: [Transaction]
 )
 UserSchema = new Schema(
-  _id: 
-    type: Number
-    index: true
   name: String
+  email: String
+  pass: String
+  gender: String
   age: Number
   sex: String 
   accounts: [Account]
