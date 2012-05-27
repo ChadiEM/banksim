@@ -1,3 +1,2 @@
 #!/bin/bash
-cake watch &
-NODE_ENV='dev' nodemon lib/server.js 
+NODE_ENV='dev' nodemon src/server.coffee
