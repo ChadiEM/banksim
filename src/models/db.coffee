@@ -8,7 +8,7 @@ nconf.load()
 # Function that will add the config options related to the db object
 confInit = ( )->
   nconf.set "db:username", "root"
-  nconf.set "db:pass", "_k9jFP48Vqx21b2c"
+  nconf.set "db:pass", "k9jFP48Vqx21b2c"
   nconf.set "db:host", "staff.mongohq.com"
   nconf.set "db:port", "10048"
   nconf.set "db:name", "banksim"

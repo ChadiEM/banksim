@@ -11,7 +11,7 @@
           required: true,
           email: true
         },
-        pwd: {
+        pass: {
           required: true,
           minlength: 6
         },

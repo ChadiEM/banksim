@@ -31,14 +31,15 @@ exports.routes = (app) ->
 
   #### Post Handling
   app.post "/register", (req, res, next) ->
-    register req, (err) ->
-      if err
-        # user is not authenticated, redirect to /login
-        req.flash "error", err
+    register req, (user, err) ->
+      if user is null
+        # user is not authenticated, redirect to /register
+        req.flash "error", "Already-Exist"
         return res.redirect("/register")
       else
-        console.log("yess :D")
-        res.redirect "/users/" + user.username
+        req.logIn user, (err) ->
+          return next(err)  if err
+          res.redirect "/users/" + user.username
 
   # POST /login
   #   Use passport.authenticate() as route middleware to authenticate the request. 
@@ -57,5 +58,5 @@ exports.routes = (app) ->
       req.logIn user, (err) ->
         # user is authenticated, redirect to /users/user.username
         return next(err)  if err
-        res.redirect "/register"
+        res.redirect "/users/" + user.username
     ) req, res, next

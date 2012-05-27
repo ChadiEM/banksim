@@ -4,7 +4,7 @@
   "scripts": {
     "start": "lib/server.js"
   },
-  "version": "0.0.0-2",
+  "version": "0.0.0-6",
   "engines": {
     "node": "0.6.x"
   },
@@ -12,6 +12,8 @@
     "express": "*",
     "passport": "*",
     "passport-local": "*",
-    "jade": "*"
+    "jade": "*",
+    "mongoose": "2.6.5",
+    "nconf": "0.5.1"
   }
 }

@@ -15,10 +15,9 @@ findById = (id, fn) ->
     if users[0]
       fn null, users[0]
     else
-      fn new Error("User " + username + " does not exist")
+      fn err, null
 
 # Finds if user username exists in the database
-findById = (id, fn) ->
 findByUsername = (username, fn) ->
   User.find
     name: username
@@ -26,7 +25,7 @@ findByUsername = (username, fn) ->
     if users[0]
       fn null, users[0]
     else
-      fn new Error("User " + username + " does not exist")
+      fn err, null
 
 # passport helper functions
 passport.serializeUser (user, done) ->
@@ -72,7 +71,7 @@ exports.register = (req, cb) ->
     name: req.body.name
   , (err, users) ->
     if users[0]
-      cb "User already exists"
+      cb(null, err)
     else
       user = new User
       user.name = req.body.name
@@ -80,4 +79,4 @@ exports.register = (req, cb) ->
       user.pass = req.body.pass
       user.gender = req.body.gender
       user.save (err) ->
-        cb(err)
+        cb(user, err)

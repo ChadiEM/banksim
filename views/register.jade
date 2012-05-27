@@ -1,30 +1,31 @@
 .container
-  if message== "Failed" 
+  if message== "Already-Exist" 
     .alert.alert-error
-      | Wrong username or Password
+      | User Already exists!    
+      a.btn.btn-primary(href='/login') Login
 .container
   .content
     form#registerHere.form-horizontal(method='post', action='/register')
       fieldset
         legend Sign-up Form
         .control-group
-          label.control-label() Name
+          label.control-label(for='input01') Name
           .controls
             input#user_name.input-xlarge(type='text', name='name', rel='popover', data-content='Enter your first and last name.', data-original-title='Full Name')
         .control-group
-          label.control-label() Email
+          label.control-label(for='input01') Email
           .controls
             input#user_email.input-xlarge(type='text', name='email', rel='popover', data-content='What’s your email address?', data-original-title='Email')
         .control-group
-          label.control-label() Password
+          label.control-label(for='input01') Password
           .controls
             input#pwd.input-xlarge(type='password', name='pass', rel='popover', data-content='6 characters or more! ', data-original-title='Password')
         .control-group
-          label.control-label() Confirm Password
+          label.control-label(for='input01') Confirm Password
           .controls
             input#cpwd.input-xlarge(type='password', name='cpwd', rel='popover', data-content='Re-enter your password for confirmation.', data-original-title='Re-Password')
         .control-group
-          label.control-label() Gender
+          label.control-label(for='input01') Gender
           .controls
             select#gender(name='gender')
               option(value='') Gender
