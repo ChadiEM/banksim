@@ -5,37 +5,30 @@
 passport = require("passport")
 LocalStrategy = require("passport-local").Strategy
 
+User = require("../models/user").User
+
+# Finds if a user with this id exists in the database
+findById = (id, fn) ->
+  User.find
+    _id: id
+  , (err, users) ->
+    if users[0]
+      fn null, users[0]
+    else
+      fn new Error("User " + username + " does not exist")
+
+# Finds if user username exists in the database
+findById = (id, fn) ->
+findByUsername = (username, fn) ->
+  User.find
+    name: username
+  , (err, users) ->
+    if users[0]
+      fn null, users[0]
+    else
+      fn new Error("User " + username + " does not exist")
 
 # passport helper functions
-findById = (id, fn) ->
-  idx = id - 1
-  if users[idx]
-    fn null, users[idx]
-  else
-    fn new Error("User " + id + " does not exist")
-
-findByUsername = (username, fn) ->
-  i = 0
-  len = users.length
-
-  while i < len
-    user = users[i]
-    return fn(null, user)  if user.username is username
-    i++
-  fn null, null
-
-users = [
-  id: 1
-  username: "bob"
-  password: "secret"
-  email: "bob@example.com"
-,
-  id: 2
-  username: "joe"
-  password: "birthday"
-  email: "joe@example.com"
- ]
-
 passport.serializeUser (user, done) ->
   done null, user.id
 
@@ -51,7 +44,7 @@ passport.use new LocalStrategy((username, password, done) ->
         return done(null, false,
           message: "Unkown user " + username
         )
-      unless user.password is password
+      unless user.pass is password
         return done(null, false,
           message: "Invalid password"
         )
@@ -59,6 +52,7 @@ passport.use new LocalStrategy((username, password, done) ->
 )
 
 
+# The passport instance
 exports.passport = passport
 
 # Simple route middleware to ensure user is authenticated.
@@ -70,3 +64,20 @@ exports.ensureAuthenticated = (req, res, next) ->
   return next()  if req.isAuthenticated()
   res.redirect "/login"
 
+
+# A function that will take the request and add the user to the database IF
+# that user does not exist yet in the db.
+exports.register = (req, cb) ->
+  User.find
+    name: req.body.name
+  , (err, users) ->
+    if users[0]
+      cb "User already exists"
+    else
+      user = new User
+      user.name = req.body.name
+      user.email = req.body.email
+      user.pass = req.body.pass
+      user.gender = req.body.gender
+      user.save (err) ->
+        cb(err)

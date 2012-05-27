@@ -1,5 +1,6 @@
 ensureAuthenticated = require("./passport-helpers").ensureAuthenticated
 passport = require("./passport-helpers").passport
+register = require("./passport-helpers").register
 
 exports.routes = (app) ->
   #### Get Handling
@@ -15,9 +16,11 @@ exports.routes = (app) ->
 
   app.get "/register", (req, res) ->
     res.render "register", 
-      user: req.user
+      user: req.user,
+      message: req.flash('error') 
 
-  app.get "/account", ensureAuthenticated, (req, res) ->
+  app.get "/users/:name?", ensureAuthenticated, (req, res) ->
+    console.log "hul;lo"
     res.render "account",
       user: req.user
 
@@ -27,13 +30,15 @@ exports.routes = (app) ->
     res.redirect "/"
 
   #### Post Handling
-  app.post "/register", (req, res) ->
-    res.render "register.jade", {}
-    name = req.body.name
-    email = req.body.email
-    pass = req.body.pass
-    cpass = req.body.cpass
-    gender = req.body.gender
+  app.post "/register", (req, res, next) ->
+    register req, (err) ->
+      if err
+        # user is not authenticated, redirect to /login
+        req.flash "error", err
+        return res.redirect("/register")
+      else
+        console.log("yess :D")
+        res.redirect "/users/" + user.username
 
   # POST /login
   #   Use passport.authenticate() as route middleware to authenticate the request. 
@@ -52,5 +57,5 @@ exports.routes = (app) ->
       req.logIn user, (err) ->
         # user is authenticated, redirect to /users/user.username
         return next(err)  if err
-        res.redirect "/users/" + user.username
+        res.redirect "/register"
     ) req, res, next
