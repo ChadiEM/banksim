@@ -1,7 +1,17 @@
 {
   "name": "banksim",
-  "version": "0.0.1",
-   "scripts": {
-    "start": "web.js"
+  "subdomain": "banksim",
+  "scripts": {
+    "start": "lib/server.js"
+  },
+  "version": "0.0.0-2",
+  "engines": {
+    "node": "0.6.x"
+  },
+  "dependencies": {
+    "express": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "jade": "*"
   }
 }

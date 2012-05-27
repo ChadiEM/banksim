@@ -2,6 +2,7 @@ express = require("express")
 util = require("util")
 
 passport = require("passport")
+console.log process.env.NODE_ENV
 
 # Application configuration
 app = express.createServer()

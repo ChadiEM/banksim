@@ -1,2 +1,3 @@
+#!/bin/bash
 cake watch &
-nodemon lib/server.js 
+NODE_ENV='dev' nodemon lib/server.js 
