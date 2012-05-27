@@ -39,7 +39,7 @@ exports.routes = (app) ->
       else
         req.logIn user, (err) ->
           return next(err)  if err
-          res.redirect "/users/" + user.username
+          res.redirect "/users/" + user.name
 
   # POST /login
   #   Use passport.authenticate() as route middleware to authenticate the request. 
@@ -58,5 +58,5 @@ exports.routes = (app) ->
       req.logIn user, (err) ->
         # user is authenticated, redirect to /users/user.username
         return next(err)  if err
-        res.redirect "/users/" + user.username
+        res.redirect "/users/" + user.name
     ) req, res, next
