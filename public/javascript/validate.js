@@ -49,11 +49,11 @@
     });
     return $("#login").validate({
       rules: {
-        user_name: "required",
+        username: "required",
         password: "required"
       },
       messages: {
-        user_name: "Enter your username",
+        username: "Enter your username",
         password: "Enter your Password"
       },
       errorClass: "help-inline",

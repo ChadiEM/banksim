@@ -1,6 +1,9 @@
 express = require("express")
 util = require("util")
 
+passport = require("passport")
+
+# Application configuration
 app = express.createServer()
 app.configure ->
   app.set "views", __dirname + "/../views"
@@ -9,6 +12,9 @@ app.configure ->
   app.use express.cookieParser()
   app.use express.bodyParser()
   app.use express.methodOverride()
+  app.use express.session(secret: "keyboard cat")
+  app.use passport.initialize()
+  app.use passport.session()
   app.use app.router
   app.use express.static(__dirname + "/../public")
 
@@ -17,4 +23,3 @@ app.listen port, ->
   console.log "Listening on " + port
 
 require("./routes/handler").routes app
-
