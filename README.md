@@ -22,4 +22,4 @@ Next, use the run script:
 ./run
 ```
 
-Finally, visit ```127.0.0.1:5000/``` and test the application.
+Finally, visit ```http://127.0.0.1:5000/``` and test the application.
