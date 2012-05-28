@@ -1,33 +1,46 @@
-.container#home
-  .row-fluid
-    .span2
-      .well.sidebar-nav
-        ul.nav.nav-list
-          li.nav-header Profile
-          li 
-            b Name: 
-            | #{user.name}
-          li 
-            b email: 
-            | #{user.email}
-          li
-            b Current Balance: 
-            | #{user.accounts[0].currentBalance}$
-
-    .span8
-      .well.sidebar-nav
-        ul#Tab.nav.nav-tabs(data-tabs='tabs')
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      .nav-collapse
+        a.brand(href='/') Museum AR!
+        ul.nav
+          li.divider-vertical
           li.active
-            a(href='#summary', data-toggle='tab') Summary
-          li
-            a(href='#transaction', data-toggle='tab') Transaction
-        #my-tab-content.tab-content
-          #summary.tab-pane.fade.in.active
-            h1 Summary
-            p blub
-          #transaction.tab-pane.fade
-            h1 Transaction
-            p blub
+            a(href='/') Home
+          li(pull-right='')
+            a(href='/logout') Logout
+
+header.jumbotron.masthead
+  .container#home
+    .row-fluid
+      .span2
+        .well.sidebar-nav
+          ul.nav.nav-list
+            li.nav-header Profile
+            li 
+              b Name: 
+              | #{user.name}
+            li 
+              b email: 
+              | #{user.email}
+            li
+              b Current Balance: 
+              | #{user.accounts[0].currentBalance}$
+
+      .span8
+        .well#mainWell.sidebar-nav
+          ul#Tab.nav.nav-tabs(data-tabs='tabs')
+            li.active
+              a(href='#summary', data-toggle='tab') Summary
+            li
+              a(href='#transaction', data-toggle='tab') Transaction
+          #my-tab-content.tab-content
+            #summary.tab-pane.fade.in.active
+              h1 Summary
+              p blub
+            #transaction.tab-pane.fade
+              h1 Transaction
+              p blub
 
 
 
