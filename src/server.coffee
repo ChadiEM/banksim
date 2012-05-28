@@ -7,7 +7,7 @@ passport = require("passport")
 # Application configuration
 app = express.createServer()
 app.configure ->
-  app.set "views", __dirname + "/../views"
+  app.set "views", __dirname + "/resources/views"
   app.set "view engine", "jade"
   app.use express.logger()
   app.use express.cookieParser()
@@ -17,7 +17,7 @@ app.configure ->
   app.use passport.initialize()
   app.use passport.session()
   app.use app.router
-  app.use express.static(__dirname + "/../public")
+  app.use express.static(__dirname + "/resources/public")
 
 # Set port and start the Application
 port = process.env.PORT or 5000

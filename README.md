@@ -13,13 +13,15 @@ On Ubuntu, clone this repository then run the install script.
 Run
 ===
 You should make sure that mongo is running:
+
 ```
 mongod
 ```
 
 Next, use the run script:
+
 ```
-./run
+./src/run
 ```
 
 Finally, visit ```http://127.0.0.1:5000/``` and test the application.
@@ -29,11 +31,13 @@ Documentation
 Commented source code is available under ```docs/docco```. To access it, open ```docs/docco/server.html``` inside your browser.
 
 If you which to generate yourself documentation, first install coffescript:
+
 ```
 npm install coffee-script docco codo
 ```
 
 Then run:
+
 ```
 cake docs
 ```
