@@ -1,0 +1,61 @@
+<!DOCTYPE html>  <html> <head>   <title>passport-helpers.coffee</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">                                           <a class="source" href="db.html">                 db.coffee               </a>                                           <a class="source" href="user.html">                 user.coffee               </a>                                           <a class="source" href="bootstrap.html">                 bootstrap.coffee               </a>                                           <a class="source" href="bootstrap.min.html">                 bootstrap.min.coffee               </a>                                           <a class="source" href="validate.html">                 validate.coffee               </a>                                           <a class="source" href="handler.html">                 handler.coffee               </a>                                           <a class="source" href="passport-helpers.html">                 passport-helpers.coffee               </a>                                           <a class="source" href="server.html">                 server.coffee               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               passport-helpers.coffee             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p>Below are some helper functions that are used to make sure
+the user is authenticated correctly</p>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <p>passport management import</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nv">passport = </span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;passport&quot;</span><span class="p">)</span>
+<span class="nv">LocalStrategy = </span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;passport-local&quot;</span><span class="p">).</span><span class="nx">Strategy</span>
+
+<span class="nv">User = </span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;../models/user&quot;</span><span class="p">).</span><span class="nx">User</span></pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>Finds if a user with this id exists in the database</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nv">findById = </span><span class="nf">(id, fn) -&gt;</span>
+  <span class="nx">User</span><span class="p">.</span><span class="nx">find</span>
+    <span class="nv">_id: </span><span class="nx">id</span>
+  <span class="p">,</span> <span class="nf">(err, users) -&gt;</span>
+    <span class="k">if</span> <span class="nx">users</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+      <span class="nx">fn</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">users</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">else</span>
+      <span class="nx">fn</span> <span class="nx">err</span><span class="p">,</span> <span class="kc">null</span></pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <p>Finds if user username exists in the database</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nv">findByUsername = </span><span class="nf">(username, fn) -&gt;</span>
+  <span class="nx">User</span><span class="p">.</span><span class="nx">find</span>
+    <span class="nv">name: </span><span class="nx">username</span>
+  <span class="p">,</span> <span class="nf">(err, users) -&gt;</span>
+    <span class="k">if</span> <span class="nx">users</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+      <span class="nx">fn</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">users</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">else</span>
+      <span class="nx">fn</span> <span class="nx">err</span><span class="p">,</span> <span class="kc">null</span></pre></div>             </td>           </tr>                               <tr id="section-5">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-5">&#182;</a>               </div>               <p>passport helper functions</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nx">passport</span><span class="p">.</span><span class="nx">serializeUser</span> <span class="nf">(user, done) -&gt;</span>
+  <span class="nx">done</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">id</span>
+
+<span class="nx">passport</span><span class="p">.</span><span class="nx">deserializeUser</span> <span class="nf">(id, done) -&gt;</span>
+  <span class="nx">findById</span> <span class="nx">id</span><span class="p">,</span> <span class="nf">(err, user) -&gt;</span>
+    <span class="nx">done</span> <span class="nx">err</span><span class="p">,</span> <span class="nx">user</span>
+
+<span class="nx">passport</span><span class="p">.</span><span class="nx">use</span> <span class="k">new</span> <span class="nx">LocalStrategy</span><span class="p">(</span><span class="nf">(username, password, done) -&gt;</span>
+  <span class="nx">process</span><span class="p">.</span><span class="nx">nextTick</span> <span class="o">-&gt;</span>
+    <span class="nx">findByUsername</span> <span class="nx">username</span><span class="p">,</span> <span class="nf">(err, user) -&gt;</span>
+      <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>  <span class="k">if</span> <span class="nx">err</span>
+      <span class="nx">unless</span> <span class="nx">user</span>
+        <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span>
+          <span class="nv">message: </span><span class="s2">&quot;Unkown user &quot;</span> <span class="o">+</span> <span class="nx">username</span>
+        <span class="p">)</span>
+      <span class="nx">unless</span> <span class="nx">user</span><span class="p">.</span><span class="nx">pass</span> <span class="o">is</span> <span class="nx">password</span>
+        <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span>
+          <span class="nv">message: </span><span class="s2">&quot;Invalid password&quot;</span>
+        <span class="p">)</span>
+      <span class="nx">done</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">user</span>
+<span class="p">)</span></pre></div>             </td>           </tr>                               <tr id="section-6">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-6">&#182;</a>               </div>               <p>The passport instance</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nv">exports.passport = </span><span class="nx">passport</span></pre></div>             </td>           </tr>                               <tr id="section-7">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-7">&#182;</a>               </div>               <p>Simple route middleware to ensure user is authenticated.
+  Use this route middleware on any resource that needs to be protected.  If
+  the request is authenticated (typically via a persistent login session),
+  the request will proceed.  Otherwise, the user will be redirected to the
+  login page.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nv">exports.ensureAuthenticated = </span><span class="nf">(req, res, next) -&gt;</span>
+  <span class="k">return</span> <span class="nx">next</span><span class="p">()</span>  <span class="k">if</span> <span class="nx">req</span><span class="p">.</span><span class="nx">isAuthenticated</span><span class="p">()</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span> <span class="s2">&quot;/login&quot;</span></pre></div>             </td>           </tr>                               <tr id="section-8">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-8">&#182;</a>               </div>               <p>A function that will take the request and add the user to the database IF
+that user does not exist yet in the db.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nv">exports.register = </span><span class="nf">(req, cb) -&gt;</span>
+  <span class="nx">User</span><span class="p">.</span><span class="nx">find</span>
+    <span class="nv">name: </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">name</span>
+  <span class="p">,</span> <span class="nf">(err, users) -&gt;</span>
+    <span class="k">if</span> <span class="nx">users</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+      <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+    <span class="k">else</span>
+      <span class="nv">user = </span><span class="k">new</span> <span class="nx">User</span>
+      <span class="nv">user.name = </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">name</span>
+      <span class="nv">user.email = </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span>
+      <span class="nv">user.pass = </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">pass</span>
+      <span class="nv">user.gender = </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">gender</span>
+      <span class="nx">user</span><span class="p">.</span><span class="nx">save</span> <span class="nf">(err) -&gt;</span>
+        <span class="nx">cb</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+
+</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 
