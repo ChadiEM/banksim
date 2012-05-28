@@ -10,6 +10,14 @@ html, body {
 body {
 	padding-top: 40px;
 }
+#home {
+	width: 95%;
+}
+
+.well {
+	padding: 6px;
+}
+
 .container {
 	width: 500px;
 }

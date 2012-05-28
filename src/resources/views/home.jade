@@ -1,0 +1,37 @@
+.container#home
+  .row-fluid
+    .span2
+      .well.sidebar-nav
+        ul.nav.nav-list
+          li.nav-header Profile
+          li 
+            b Name: 
+            | #{user.name}
+          li 
+            b email: 
+            | #{user.email}
+          li
+            b Current Balance: 
+            | #{user.accounts[0].currentBalance}$
+
+    .span8
+      .well.sidebar-nav
+        ul#Tab.nav.nav-tabs(data-tabs='tabs')
+          li.active
+            a(href='#summary', data-toggle='tab') Summary
+          li
+            a(href='#transaction', data-toggle='tab') Transaction
+        #my-tab-content.tab-content
+          #summary.tab-pane.active.fade.in.active
+            h1 Summary
+            p blub
+          #transaction.tab-pane.active.fade
+            h1 Transaction
+            p blub
+
+
+
+script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js')
+script(src='http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js')
+script(src='http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js')
+script(src='/javascript/bank.js')
