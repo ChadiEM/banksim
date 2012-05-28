@@ -11,11 +11,13 @@ exports.routes = (app) ->
   # Login and register Form getter
   app.get "/login", (req, res) ->
     res.render "login",
+      title: "Login",
       user: req.user,
       message: req.flash('error') 
 
   app.get "/register", (req, res) ->
     res.render "register", 
+      title: "Register",
       user: req.user,
       message: req.flash('error') 
 
@@ -23,6 +25,7 @@ exports.routes = (app) ->
   app.get "/users/:name", ensureAuthenticated, (req, res) ->
     console.log req.user
     res.render "home", 
+      title: "Home",
       user: req.user,
       message: req.flash('error') ,
       layout: 'homeLayout'

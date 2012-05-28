@@ -1,3 +1,10 @@
+script(src='http://twitter.github.com/bootstrap/assets/js/jquery.js')
+script(src='http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js')
+script(src='http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js')
+script(src='http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js')
+script(type='text/javascript', src='http://jzaefferer.github.com/jquery-validation/jquery.validate.js')
+script(type='text/javascript', src='/javascript/validate.js')
+
 .container
   if message== "Already-Exist" 
     .alert.alert-error
@@ -37,9 +44,3 @@
             button#signup.btn.btn-success(rel='tooltip', title='first tooltip') Create My Account
             | - or -
             a.btn.btn-primary(href='/login') Login
-script(src='http://twitter.github.com/bootstrap/assets/js/jquery.js')
-script(src='http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js')
-script(src='http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js')
-script(src='http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js')
-script(type='text/javascript', src='http://jzaefferer.github.com/jquery-validation/jquery.validate.js')
-script(type='text/javascript', src='/javascript/validate.js')
