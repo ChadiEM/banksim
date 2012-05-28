@@ -12,12 +12,14 @@ exports.routes = (app) ->
   app.get "/login", (req, res) ->
     res.render "login",
       title: "Login",
+      logo: 1,
       user: req.user,
       message: req.flash('error') 
 
   app.get "/register", (req, res) ->
     res.render "register", 
       title: "Register",
+      logo: 1,
       user: req.user,
       message: req.flash('error') 
 
@@ -26,9 +28,9 @@ exports.routes = (app) ->
     console.log req.user
     res.render "home", 
       title: "Home",
+      logo: 0,
       user: req.user,
       message: req.flash('error') ,
-      layout: 'homeLayout'
 
   # Log-out function
   app.get "/logout", (req, res) ->
