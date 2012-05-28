@@ -73,10 +73,21 @@ exports.register = (req, cb) ->
     if users[0]
       cb(null, err)
     else
+      # Create the basic user information
       user = new User
       user.name = req.body.name
       user.email = req.body.email
       user.pass = req.body.pass
       user.gender = req.body.gender
+
+      # Create a default account for the user
+      account = []
+      account.type = "personal"
+      account.currency = "$"
+      account.branch = "AUB"
+      account.availableBalance = "0"
+      account.currentBalance = "0"
+
+      user.accounts.push(account)
       user.save (err) ->
         cb(user, err)

@@ -5,8 +5,8 @@ register = require("./passport-helpers").register
 exports.routes = (app) ->
   #### Get Handling
   # Check if user is already authenticated.
-  app.get "/", (req, res) ->
-    res.redirect "/login"
+  app.get "/", ensureAuthenticated, (req, res, next) ->
+    res.redirect "/users/" + req.user.name
 
   # Login and register Form getter
   app.get "/login", (req, res) ->
@@ -19,15 +19,18 @@ exports.routes = (app) ->
       user: req.user,
       message: req.flash('error') 
 
-  app.get "/users/:name?", ensureAuthenticated, (req, res) ->
-    console.log "hul;lo"
-    res.render "account",
-      user: req.user
+  # Handling of the user's homepage
+  app.get "/users/:name", ensureAuthenticated, (req, res) ->
+    console.log req.user
+    res.render "home", 
+      user: req.user,
+      message: req.flash('error') 
 
   # Log-out function
   app.get "/logout", (req, res) ->
     req.logout()
     res.redirect "/"
+
 
   #### Post Handling
   app.post "/register", (req, res, next) ->

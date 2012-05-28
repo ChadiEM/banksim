@@ -20,8 +20,6 @@ UserSchema = new Schema(
   email: String
   pass: String
   gender: String
-  age: Number
-  sex: String 
   accounts: [Account]
 )
 User = db.model("User", UserSchema)
