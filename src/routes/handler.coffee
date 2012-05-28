@@ -24,7 +24,8 @@ exports.routes = (app) ->
     console.log req.user
     res.render "home", 
       user: req.user,
-      message: req.flash('error') 
+      message: req.flash('error') ,
+      layout: 'homeLayout'
 
   # Log-out function
   app.get "/logout", (req, res) ->
