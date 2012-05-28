@@ -82,12 +82,6 @@ exports.register = (req, cb) ->
 
       # Create a default account for the user
       account = []
-      account.type = "personal"
-      account.currency = "$"
-      account.branch = "AUB"
-      account.availableBalance = "0"
-      account.currentBalance = "0"
-
       user.accounts.push(account)
       user.save (err) ->
         cb(user, err)

@@ -8,11 +8,21 @@ Transaction = new Schema(
   desc: String
 )
 Account = new Schema(
-  type: String
-  currency: String
-  branch: String
-  availableBalance: Number
-  currentBalance: Number
+  type: 
+    type: String
+    default: "perosnal"
+  currency: 
+    type: String
+    default: "$"
+  branch: 
+    type: String
+    default: "AUB"
+  availableBalance: 
+    type: Number
+    default: 0
+  currentBalance: 
+    type: Number
+    default: 0
   transactions: [Transaction]
 )
 UserSchema = new Schema(
