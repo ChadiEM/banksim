@@ -91,3 +91,9 @@ legend {
 .nav-list li {
 	margin-bottom: 10px;
 }
+.nav-tabs li.active a {
+	background-color: rgb(245, 245, 245);
+}
+.nav-tabs {
+	padding-left: 10px;
+}
