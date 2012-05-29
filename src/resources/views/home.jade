@@ -65,13 +65,15 @@ header.jumbotron.masthead
                   table.table
                       thead
                           tr
-                            th Transaction
+                            th Type
+                            th Amount
                             th Date
                         tbody
                         each item in transactions
                           tr
-                            th $#{item.amount} 
-                            th #{item.date}
+                            td #{item.type}
+                            td $#{item.amount} 
+                            td #{item.date}
                 else
                     p You Haven't done any transaction lately
               #deposit.tab-pane.fade
