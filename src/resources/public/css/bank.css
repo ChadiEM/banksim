@@ -10,19 +10,32 @@ html, body {
 body {
 	padding-top: 40px;
 }
-#home {
-	width: 95%;
-}
 
-#mainWell{
+/* Override for the main well element used in home that contains the tabs */
+.well#mainWell{
 	padding: 13px;
 }
+
+/* Override for well of user info */
 .well {
 	padding: 6px;
 }
 
+/* HOME container */
+.container#home {
+	width: 95%;
+}
+
+/* login and register container */
 .container {
 	width: 500px;
+}
+
+#amount {
+	width: 25px;
+}
+.tab-content {
+    overflow: visible;
 }
 
 /* The white background content wrapper */

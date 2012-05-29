@@ -4,11 +4,14 @@ script(src='http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js')
 script(src='http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js')
 script(type='text/javascript', src='http://jzaefferer.github.com/jquery-validation/jquery.validate.js')
 script(type='text/javascript', src='/javascript/validate.js')
+
+
 .container
   if message== "Failed" 
     .alert.alert-error
       | Wrong username or Password
       a.btn.btn-primary(href='/register') Register
+
 .container
   .content
     form#login.form-horizontal(method='post', action='/login')

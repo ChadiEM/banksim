@@ -3,6 +3,9 @@ script(src='http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js')
 script(src='http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js')
 script(src='/javascript/bank.js')
 
+script(src='https://github.com/addyosmani/jquery-ui-bootstrap/raw/master/js/jquery-ui-1.8.16.custom.min.js')
+link(rel='stylesheet', type='text/css', href='http://addyosmani.github.com/jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.8.16.custom.css')
+
 .navbar.navbar-fixed-top
   .navbar-inner
     .container
@@ -15,37 +18,52 @@ script(src='/javascript/bank.js')
           li(pull-right='')
             a(href='/logout') Logout
 
+
 header.jumbotron.masthead
+
   .container#home
     .row-fluid
-      .span2
-        .well.sidebar-nav
-          ul.nav.nav-list
-            li.nav-header Profile
-            li 
-              b Name: 
-              | #{user.name}
-            li 
-              b email: 
-              | #{user.email}
-            li
-              b Current Balance: 
-              | #{user.accounts[0].currentBalance}$
+      .span12
+        .span2
+          .well.sidebar-nav
+            ul.nav.nav-list
+              li.nav-header Profile
+              li 
+                b Name: 
+                | #{user.name}
+              li 
+                b email: 
+                | #{user.email}
+              li
+                b Current Balance: 
+                | $#{user.accounts[0].currentBalance}
 
-      .span8
-        .well#mainWell.sidebar-nav
-          ul#Tab.nav.nav-tabs(data-tabs='tabs')
-            li.active
-              a(href='#summary', data-toggle='tab') Summary
-            li
-              a(href='#transaction', data-toggle='tab') Transaction
-          #my-tab-content.tab-content
-            #summary.tab-pane.fade.in.active
-              h1 Summary
-              p blub
-            #transaction.tab-pane.fade
-              h1 Transaction
-              p blub
 
+        .span8
+          .well#mainWell.sidebar-nav
+            ul#Tab.nav.nav-tabs(data-tabs='tabs')
+              li.active
+                a(href='#summary', data-toggle='tab') Summary
+              li
+                a(href='#deposit', data-toggle='tab') Deposit
+            #my-tab-content.tab-content
+              #summary.tab-pane.fade.in.active
+                h1 Latest Transactions you did
+                p blub
+              #deposit.tab-pane.fade
+                .page-header
+                  h1 Create a new Deposit
+                .row-fluid
+                  .span6 
+                    .row-fluid
+                      .span5 
+                        label Specify the Value to Deposit
+                      .span1 
+                        input#amount(type='text', style='border: 0, solid; color: #f6931f; font-weight: bold;')
+                    .row-fluid
+                      .span7 
+                        #slider-vertical
+                      .span5 
+                        a.btn.btn-primary(href='/deposit') Submit
 
 
