@@ -46,6 +46,8 @@ header.jumbotron.masthead
                 a(href='#summary', data-toggle='tab') Summary
               li
                 a(href='#deposit', data-toggle='tab') Deposit
+              li
+                a(href='#withdraw', data-toggle='tab') Withdraw
             #my-tab-content.tab-content
               #summary.tab-pane.fade
                 .page-header
@@ -76,7 +78,7 @@ header.jumbotron.masthead
                   .span6 
                     form#login.form-horizontal(method='post', action='/deposit')
                       .row-fluid
-                        .span5 
+                        .span6 
                           label Specify the Value to Deposit
                         .span1 
                           input#amount(name='amount', type='text', style='border: 0, solid; color: #f6931f; font-weight: bold;')
@@ -86,5 +88,20 @@ header.jumbotron.masthead
                           #slider-vertical
                         .span5 
                           input#deposit.btn.btn-primary(type='submit', value='Submit') 
-
-
+              #withdraw.tab-pane.fade
+                .page-header
+                  h1 Create a new Withdrawal
+                .row-fluid
+                  .span6 
+                    form#login.form-horizontal(method='post', action='/withdraw')
+                      .row-fluid
+                        .span6 
+                          label Specify the Value to Withdraw
+                        .span1 
+                          input#amountWithdraw(type='text', style='border: 0, solid; color: #f6931f; font-weight: bold;')
+                      br
+                      .row-fluid
+                        .span7 
+                          #slider-vertical-withdraw
+                        .span5 
+                          a.btn.btn-primary(href='/withdraw') Submit
