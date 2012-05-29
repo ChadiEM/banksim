@@ -87,3 +87,7 @@ legend {
 	padding-top: 36px;
 	margin-bottom: 72px;
 }
+
+.nav-list li {
+	margin-bottom: 10px;
+}

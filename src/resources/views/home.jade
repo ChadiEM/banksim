@@ -29,14 +29,17 @@ header.jumbotron.masthead
             ul.nav.nav-list
               li.nav-header Profile
               li 
-                b Name: 
-                | #{user.name}
+                b Name
+                br 
+                #{user.name}
               li 
-                b email: 
-                | #{user.email}
+                b Email 
+                br
+                #{user.email}
               li
-                b Current Balance: 
-                | $#{user.accounts[0].balance}
+                b Balance
+                br
+                $#{user.accounts[0].balance}
 
 
         .span8
@@ -86,8 +89,9 @@ header.jumbotron.masthead
                       .row-fluid
                         .span7 
                           #slider-vertical
-                        .span5 
-                          input#deposit.btn.btn-primary(type='submit', value='Submit') 
+                      .row-fluid
+                        .span5
+                          input#deposit.btn.btn-primary(type='submit', value='Submit')
               #withdraw.tab-pane.fade
                 .page-header
                   h1 Create a new Withdrawal
@@ -103,5 +107,6 @@ header.jumbotron.masthead
                       .row-fluid
                         .span7 
                           #slider-vertical-withdraw
+                      .row-fluid
                         .span5 
                           input#deposit.btn.btn-primary(type='submit', value='Submit') 
