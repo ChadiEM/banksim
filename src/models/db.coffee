@@ -5,6 +5,9 @@ nconf.use "file",
   file: "config.json"
 nconf.load()
 
+# Variable that contains the remote database settings
+settings = nconf.get("db")
+
 configure = () ->
   # The location of the db is defined based on the environment
   if process.env.NODE_ENV is "production"
@@ -23,20 +26,19 @@ confInit = ( )->
   nconf.set "db:host", "staff.mongohq.com"
   nconf.set "db:port", "10048"
   nconf.set "db:name", "banksim"
-  configure()
   nconf.save (err) ->
     if err
       console.error err.message
       return
     console.log "Configuration saved successfully."
+    settings = nconf.get("db")
+    configure()
 
-
-# Variable that contains the remote database settings
-settings = nconf.get("db")
 
 # If settings is undefined, then the config entry for the db was not created.
 # We will thus invoke the function that creates it
-unless settings
+if settings
+  configure()
+else
   confInit()
 
-configure()

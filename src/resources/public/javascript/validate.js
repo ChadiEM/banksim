@@ -6,8 +6,8 @@
     });
     $("#registerHere").validate({
       rules: {
-        user_name: "required",
-        user_email: {
+        name: "required",
+        email: {
           required: true,
           email: true
         },
