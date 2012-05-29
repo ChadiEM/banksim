@@ -49,9 +49,15 @@ header.jumbotron.masthead
               li
                 a(href='#withdraw', data-toggle='tab') Withdraw
             #my-tab-content.tab-content
-              #summary.tab-pane.fade
+              #summary.tab-pane.fade.in.active
                 .page-header
                   h1 Latest Transactions you did
+                if message== "Success" 
+                  .alert.alert-success
+                    | Success!
+                if message== "Failed" 
+                  .alert.alert-error
+                    | Failed to add amount
                 if transactions
                   table.table
                       thead
@@ -65,15 +71,9 @@ header.jumbotron.masthead
                             th #{item.date}
                 else
                     p You Haven't done any transaction lately
-              #deposit.tab-pane.fade.in.active
+              #deposit.tab-pane.fade
                 .page-header
                   h1 Create a new Deposit
-                if message== "Success" 
-                  .alert.alert-success
-                    | Success!
-                if message== "Failed" 
-                  .alert.alert-error
-                    | Failed to add amount
                 .row-fluid
                   .span6 
                     form#login.form-horizontal(method='post', action='/deposit')
@@ -98,10 +98,10 @@ header.jumbotron.masthead
                         .span6 
                           label Specify the Value to Withdraw
                         .span1 
-                          input#amountWithdraw(type='text', style='border: 0, solid; color: #f6931f; font-weight: bold;')
+                          input#amountWithdraw(name='amount', type='text', style='border: 0, solid; color: #f6931f; font-weight: bold;')
                       br
                       .row-fluid
                         .span7 
                           #slider-vertical-withdraw
                         .span5 
-                          a.btn.btn-primary(href='/withdraw') Submit
+                          input#deposit.btn.btn-primary(type='submit', value='Submit') 

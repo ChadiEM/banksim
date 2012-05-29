@@ -12,7 +12,7 @@ Transaction = new Schema(
 Account = new Schema(
   type: 
     type: String
-    default: "perosnal"
+    default: "personal"
   currency: 
     type: String
     default: "$"

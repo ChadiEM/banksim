@@ -2,6 +2,7 @@ ensureAuthenticated = require("./passport-helpers").ensureAuthenticated
 passport = require("./passport-helpers").passport
 register = require("./passport-helpers").register
 deposit =  require("./passport-helpers").deposit
+withdraw =  require("./passport-helpers").withdraw
 
 exports.routes = (app) ->
   #### Get Handling
@@ -40,6 +41,12 @@ exports.routes = (app) ->
 
 
   #### Post Handling
+  app.post "/withdraw", ensureAuthenticated, (req, res, next) ->
+    withdraw req, (err) ->
+      req.flash "error", "Failed" if err
+      req.flash "error", "Success" if !err
+      res.redirect "/users/" + req.user.name
+
   app.post "/deposit", ensureAuthenticated, (req, res, next) ->
     deposit req, (err) ->
       req.flash "error", "Failed" if err
