@@ -4,8 +4,10 @@ db = require("./db")
 Schema = mongoose.Schema
 Transaction = new Schema(
   amount: Number
-  date: Date
-  desc: String
+  type: String
+  date: 
+    type: Date
+    default: Date.now
 )
 Account = new Schema(
   type: 
@@ -17,10 +19,7 @@ Account = new Schema(
   branch: 
     type: String
     default: "AUB"
-  availableBalance: 
-    type: Number
-    default: 0
-  currentBalance: 
+  balance: 
     type: Number
     default: 0
   transactions: [Transaction]

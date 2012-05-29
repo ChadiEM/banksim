@@ -36,7 +36,7 @@ header.jumbotron.masthead
                 | #{user.email}
               li
                 b Current Balance: 
-                | $#{user.accounts[0].currentBalance}
+                | $#{user.accounts[0].balance}
 
 
         .span8
@@ -47,23 +47,44 @@ header.jumbotron.masthead
               li
                 a(href='#deposit', data-toggle='tab') Deposit
             #my-tab-content.tab-content
-              #summary.tab-pane.fade.in.active
-                h1 Latest Transactions you did
-                p blub
-              #deposit.tab-pane.fade
+              #summary.tab-pane.fade
+                .page-header
+                  h1 Latest Transactions you did
+                if transactions
+                  table.table
+                      thead
+                          tr
+                            th Transaction
+                            th Date
+                        tbody
+                        each item in transactions
+                          tr
+                            th $#{item.amount} 
+                            th #{item.date}
+                else
+                    p You Haven't done any transaction lately
+              #deposit.tab-pane.fade.in.active
                 .page-header
                   h1 Create a new Deposit
+                if message== "Success" 
+                  .alert.alert-success
+                    | Success!
+                if message== "Failed" 
+                  .alert.alert-error
+                    | Failed to add amount
                 .row-fluid
                   .span6 
-                    .row-fluid
-                      .span5 
-                        label Specify the Value to Deposit
-                      .span1 
-                        input#amount(type='text', style='border: 0, solid; color: #f6931f; font-weight: bold;')
-                    .row-fluid
-                      .span7 
-                        #slider-vertical
-                      .span5 
-                        a.btn.btn-primary(href='/deposit') Submit
+                    form#login.form-horizontal(method='post', action='/deposit')
+                      .row-fluid
+                        .span5 
+                          label Specify the Value to Deposit
+                        .span1 
+                          input#amount(name='amount', type='text', style='border: 0, solid; color: #f6931f; font-weight: bold;')
+                      br
+                      .row-fluid
+                        .span7 
+                          #slider-vertical
+                        .span5 
+                          input#deposit.btn.btn-primary(type='submit', value='Submit') 
 
 

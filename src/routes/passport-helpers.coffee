@@ -85,3 +85,19 @@ exports.register = (req, cb) ->
       user.accounts.push(account)
       user.save (err) ->
         cb(user, err)
+
+exports.deposit = (req, cb) ->
+
+  #update( {_id:'joe'},{"$addToSet": { tags : "baseball" } } );
+  newTransaction = []
+  newTransaction.amount = req.body.amount
+  newTransaction.type = "deposit"
+
+  User.findOne
+    name: req.user.name
+  , (err, user) ->
+    balance = user.accounts[0].balance + parseInt(req.body.amount)
+    user.accounts[0].balance = balance
+    user.accounts[0].transactions.push newTransaction
+    user.save (err) ->
+      cb(err)

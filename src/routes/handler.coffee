@@ -1,6 +1,7 @@
 ensureAuthenticated = require("./passport-helpers").ensureAuthenticated
 passport = require("./passport-helpers").passport
 register = require("./passport-helpers").register
+deposit =  require("./passport-helpers").deposit
 
 exports.routes = (app) ->
   #### Get Handling
@@ -25,12 +26,12 @@ exports.routes = (app) ->
 
   # Handling of the user's homepage
   app.get "/users/:name", ensureAuthenticated, (req, res) ->
-    console.log req.user
     res.render "home", 
       title: "Home",
       logo: 0,
       user: req.user,
       message: req.flash('error') ,
+      transactions: req.user.accounts[0].transactions
 
   # Log-out function
   app.get "/logout", (req, res) ->
@@ -39,6 +40,13 @@ exports.routes = (app) ->
 
 
   #### Post Handling
+  app.post "/deposit", ensureAuthenticated, (req, res, next) ->
+    deposit req, (err) ->
+      req.flash "error", "Failed" if err
+      req.flash "error", "Success" if !err
+      res.redirect "/users/" + req.user.name
+
+
   app.post "/register", (req, res, next) ->
     register req, (user, err) ->
       if user is null
